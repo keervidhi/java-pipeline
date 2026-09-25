@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+
+        stage('Checkout SCM') {
             steps {
-                echo 'Building the application...'
+                checkout scm
             }
         }
 
-        stage('Test') {
+        stage('compile') {
             steps {
-                echo 'Running tests...'
+                bat 'javac HelloWorld.java'
             }
         }
 
-        stage('Deploy') {
+        stage('run') {
             steps {
-                echo 'Deploying the application...'
+                bat 'java HelloWorld'
             }
         }
     }
